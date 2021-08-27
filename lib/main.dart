@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import './widgets/transaction_list.dart';
+
+import './widgets/user_transaction.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -13,57 +15,27 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-
-  String titleInput;
-  String amountInput;
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter App'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Container(
-              width: double.infinity,
-              child: Card(
-                color: Colors.blue,
-                child: Text('Chart!'),
-                elevation: 5,
-              )),
-          Card(
-            elevation: 5,
-            child: Container(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    TextField(
-                      decoration: InputDecoration(labelText: 'Title'),
-                      controller: titleController,
-                    ),
-                    TextField(
-                      decoration: InputDecoration(labelText: 'Amount'),
-                      controller: amountController,
-                    ),
-                    TextButton(
-                      child: Text('Add Transaciton'),
-                      style: TextButton.styleFrom(primary: Colors.purple),
-                      onPressed: () {
-                        print(titleController.text);
-                        print(amountController.text);
-                      },
-                    ),
-                  ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+                width: double.infinity,
+                child: Card(
+                  color: Colors.blue,
+                  child: Text('Chart!'),
+                  elevation: 5,
                 )),
-          ),
-          TransactionList()
-        ],
+            UserTransactions(),
+          ],
+        ),
       ),
     );
   }
